@@ -1,0 +1,8 @@
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.mat-mdc-tooltip-trigger:not(.clickable) {
+  cursor: help;
+}

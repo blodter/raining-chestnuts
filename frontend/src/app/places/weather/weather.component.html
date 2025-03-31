@@ -1,0 +1,211 @@
+@if (weather) {
+	<div [gdGap]="GAPS.md" class="content" gdRows="1fr">
+		<div [gdGap]="GAPS.md" gdColumns="1fr">
+			<mat-card class="weather-card">
+				<div class="card-header">
+					<div class="card-title">
+						<div class="gradient-text">
+							National Park Temperature Data
+						</div>
+					</div>
+				</div>
+				<div class="card-content">
+					<section class="hourly-conditions">
+						@if (weather) {
+							<table mat-table [dataSource]="weather">
+								<!-- National Park Column -->
+								<ng-container matColumnDef="nationalPark">
+									<th mat-header-cell *matHeaderCellDef>National Park</th>
+									<td mat-cell *matCellDef="let row; let i = index">
+										<div class="gradient-text">
+											{{ row.national_park.name }}
+										</div>
+									</td>
+								</ng-container>
+
+								<!-- Current Temperature Column -->
+								<ng-container matColumnDef="currentTemperature">
+									<th mat-header-cell *matHeaderCellDef>Current Temperature</th>
+									<td mat-cell *matCellDef="let row; let i = index">
+										{{ row.current_temperature | temperature }}
+									</td>
+								</ng-container>
+
+								<!-- National Park Column -->
+								<ng-container matColumnDef="meanDaily">
+									<th mat-header-cell *matHeaderCellDef>Mean Daily</th>
+									<td mat-cell *matCellDef="let row; let i = index">
+										{{ row.mean_daily_temperature | temperature }}
+										<span class="rate-of-change" [ngClass]="row.change_today_to_10 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change in the last 10 years." matTooltipPosition="right">
+											({{ row.change_today_to_10 >= 0 ? '+' : '' }}{{ row.change_today_to_10 | temperature }})
+										</span>
+									</td>
+								</ng-container>
+
+								<!-- National Park Column -->
+								<ng-container matColumnDef="mean10">
+									<th mat-header-cell *matHeaderCellDef>Mean 10 Years Ago</th>
+									<td mat-cell *matCellDef="let row; let i = index">
+										{{ row.historical_mean_temp_10 | temperature }}
+										<span class="rate-of-change" [ngClass]="row.change_10_to_20 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 10 and 20 years ago." matTooltipPosition="right">
+											({{ row.change_10_to_20 >= 0 ? '+' : '' }}{{ row.change_10_to_20 | temperature }})
+										</span>
+									</td>
+								</ng-container>
+
+								<!-- National Park Column -->
+								<ng-container matColumnDef="mean20">
+									<th mat-header-cell *matHeaderCellDef>Mean 20 Years Ago</th>
+									<td mat-cell *matCellDef="let row; let i = index">
+										{{ row.historical_mean_temp_20 | temperature }}
+										<span class="rate-of-change" [ngClass]="row.change_20_to_30 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 20 and 30 years ago." matTooltipPosition="right">
+											({{ row.change_20_to_30 >= 0 ? '+' : '' }}{{ row.change_20_to_30 | temperature }})
+										</span>
+									</td>
+								</ng-container>
+
+								<!-- National Park Column -->
+								<ng-container matColumnDef="mean30">
+									<th mat-header-cell *matHeaderCellDef>Mean 30 Years Ago</th>
+									<td mat-cell *matCellDef="let row; let i = index">
+										{{ row.historical_mean_temp_30 | temperature }}
+									</td>
+								</ng-container>
+
+								<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+								<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateToWeatherDetails(row)"></tr>
+							</table>
+						}
+					</section>
+				</div>
+			</mat-card>
+		</div>
+		<div [gdGap]="GAPS.md" gdColumns="1fr 1fr">
+			@if (regionalAverages) {
+				<mat-card class="weather-card">
+					<div class="card-header">
+						<div class="card-title">
+							<div class="gradient-text">
+								Regional Historical Averages
+							</div>
+						</div>
+					</div>
+					<div class="card-content">
+						<div class="region">
+							<div class="region-header gradient-text">
+								Southern Region
+							</div>
+							<div>
+								<span class="bold">Average Mean Daily:</span> {{ regionalAverages.southern.meanDaily | temperature }}
+								<span class="rate-of-change" [ngClass]="regionalAverages.southern.rateOfChange10 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change in the last 10 years." matTooltipPosition="right">
+									({{ regionalAverages.southern.rateOfChange10 >= 0 ? '+' : '' }}{{ regionalAverages.southern.rateOfChange10 | temperature }})
+								</span>
+							</div>
+							<div>
+								<span class="bold">Average 10 Years Ago:</span> {{ regionalAverages.southern.mean10 | temperature }}
+								<span class="rate-of-change" [ngClass]="regionalAverages.southern.rateOfChange20 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 10 and 20 years ago." matTooltipPosition="right">
+									({{ regionalAverages.southern.rateOfChange20 >= 0 ? '+' : '' }}{{ regionalAverages.southern.rateOfChange20 | temperature }})
+								</span>
+							</div>
+							<div>
+								<span class="bold">Average 20 Years Ago:</span> {{ regionalAverages.southern.mean20 | temperature }}
+								<span class="rate-of-change" [ngClass]="regionalAverages.southern.rateOfChange30 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 20 and 30 years ago." matTooltipPosition="right">
+									({{ regionalAverages.southern.rateOfChange30 >= 0 ? '+' : '' }}{{ regionalAverages.southern.rateOfChange30 | temperature }})
+								</span>
+							</div>
+							<div>
+								<span class="bold">Average 30 Years Ago:</span> {{ regionalAverages.southern.mean30 | temperature }}
+							</div>
+						</div>
+						<div class="region">
+							<div class="region-header gradient-text">
+								Western Region
+							</div>
+							<div>
+								<span class="bold">Average Mean Daily:</span> {{ regionalAverages.western.meanDaily | temperature }}
+								<span class="rate-of-change" [ngClass]="regionalAverages.western.rateOfChange10 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change in the last 10 years." matTooltipPosition="right">
+									({{ regionalAverages.western.rateOfChange10 >= 0 ? '+' : '' }}{{ regionalAverages.western.rateOfChange10 | temperature }})
+								</span>
+							</div>
+							<div>
+								<span class="bold">Average 10 Years Ago:</span> {{ regionalAverages.western.mean10 | temperature }}
+								<span class="rate-of-change" [ngClass]="regionalAverages.western.rateOfChange20 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 10 and 20 years ago." matTooltipPosition="right">
+									({{ regionalAverages.western.rateOfChange20 >= 0 ? '+' : '' }}{{ regionalAverages.western.rateOfChange20 | temperature }})
+								</span>
+							</div>
+							<div>
+								<span class="bold">Average 20 Years Ago:</span> {{ regionalAverages.western.mean20 | temperature }}
+								<span class="rate-of-change" [ngClass]="regionalAverages.western.rateOfChange30 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 20 and 30 years ago." matTooltipPosition="right">
+									({{ regionalAverages.western.rateOfChange30 >= 0 ? '+' : '' }}{{ regionalAverages.western.rateOfChange30 | temperature }})
+								</span>
+							</div>
+							<div>
+								<span class="bold">Average 30 Years Ago:</span> {{ regionalAverages.western.mean30 | temperature }}
+							</div>
+						</div>
+						<div class="region">
+							<div class="region-header gradient-text">
+								Eastern Region
+							</div>
+							<div>
+								<span class="bold">Average Mean Daily:</span> {{ regionalAverages.eastern.meanDaily | temperature }}
+								<span class="rate-of-change" [ngClass]="regionalAverages.eastern.rateOfChange10 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change in the last 10 years." matTooltipPosition="right">
+									({{ regionalAverages.eastern.rateOfChange10 >= 0 ? '+' : '' }}{{ regionalAverages.eastern.rateOfChange10 | temperature }})
+								</span>
+							</div>
+							<div>
+								<span class="bold">Average 10 Years Ago:</span> {{ regionalAverages.eastern.mean10 | temperature }}
+								<span class="rate-of-change" [ngClass]="regionalAverages.eastern.rateOfChange20 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 10 and 20 years ago." matTooltipPosition="right">
+									({{ regionalAverages.eastern.rateOfChange20 >= 0 ? '+' : '' }}{{ regionalAverages.eastern.rateOfChange20 | temperature }})
+								</span>
+							</div>
+							<div>
+								<span class="bold">Average 20 Years Ago:</span> {{ regionalAverages.eastern.mean20 | temperature }}
+								<span class="rate-of-change" [ngClass]="regionalAverages.eastern.rateOfChange30 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 20 and 30 years ago." matTooltipPosition="right">
+									({{ regionalAverages.eastern.rateOfChange30 >= 0 ? '+' : '' }}{{ regionalAverages.eastern.rateOfChange30 | temperature }})
+								</span>
+							</div>
+							<div>
+								<span class="bold">Average 30 Years Ago:</span> {{ regionalAverages.eastern.mean30 | temperature }}
+							</div>
+						</div>
+					</div>
+				</mat-card>
+			}
+			@if (totalAverages) {
+				<mat-card class="weather-card">
+					<div class="card-header">
+						<div class="card-title">
+							<div class="gradient-text">
+								Total Historical Averages
+							</div>
+						</div>
+					</div>
+					<div class="card-content">
+						<div>
+							<span class="bold">Average Mean Daily:</span> {{ totalAverages.meanDaily | temperature }}
+							<span class="rate-of-change" [ngClass]="totalAverages.rateOfChange10 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change in the last 10 years." matTooltipPosition="right">
+								({{ totalAverages.rateOfChange10 >= 0 ? '+' : '' }}{{ totalAverages.rateOfChange10 | temperature }})
+							</span>
+						</div>
+						<div>
+							<span class="bold">Average 10 Years Ago:</span> {{ totalAverages.mean10 | temperature }}
+							<span class="rate-of-change" [ngClass]="totalAverages.rateOfChange20 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 10 and 20 years ago." matTooltipPosition="right">
+								({{ totalAverages.rateOfChange20 >= 0 ? '+' : '' }}{{ totalAverages.rateOfChange20 | temperature }})
+							</span>
+						</div>
+						<div>
+							<span class="bold">Average 20 Years Ago:</span> {{ totalAverages.mean20 | temperature }}
+							<span class="rate-of-change" [ngClass]="totalAverages.rateOfChange30 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 20 and 30 years ago." matTooltipPosition="right">
+								({{ totalAverages.rateOfChange30 >= 0 ? '+' : '' }}{{ totalAverages.rateOfChange30 | temperature }})
+							</span>
+						</div>
+						<div>
+							<span class="bold">Average 30 Years Ago:</span> {{ totalAverages.mean30 | temperature }}
+						</div>
+					</div>
+				</mat-card>
+			}
+		</div>
+	</div>
+}

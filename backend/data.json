@@ -1,0 +1,107 @@
+{
+	"Western": [
+		{
+			"id": 491,
+			"name": "OLYMPIC NATIONAL PARK",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-123.60718,
+					47.85187
+				]
+			}
+		},
+		{
+			"id": 482,
+			"name": "MOUNT HOOD NATIONAL FOREST",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-121.86961,
+					45.31241
+				]
+			}
+		},
+		{
+			"id": 473,
+			"name": "LASSEN VOLCANIC NATIONAL PARK",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-121.46520,
+					40.56781
+				]
+			}
+		},
+		{
+			"id": 474,
+			"name": "DEATH VALLEY NATIONAL PARK",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-116.99332,
+					36.80585
+				]
+			}
+		}
+	],
+	"Southern": [
+		{
+			"id": 261,
+			"name": "DAVY CROCKETT NATIONAL FOREST",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-95.10335,
+					31.36313
+				]
+			}
+		},
+		{
+			"id": 252,
+			"name": "GULF ISLANDS NATIONAL SEASHORE",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-88.40212,
+					30.27561
+				]
+			}
+		},
+		{
+			"id": 2649,
+			"name": "BIG CYPRESS NATIONAL PRESERVE",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-81.06110,
+					26.18002
+				]
+			}
+		}
+	],
+	"Eastern": [
+		{
+			"id": 181,
+			"name": "SHENANDOAH NATIONAL PARK",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-78.46899,
+					38.60046
+				]
+			}
+		},
+		{
+			"id": 3004,
+			"name": "NEW JERSEY PINELANDS NATIONAL RESERVE",
+			"geometry": {
+				"type": "Point",
+				"coordinates": [
+					-74.78199,
+					39.83701
+				]
+			}
+		}
+	]
+}

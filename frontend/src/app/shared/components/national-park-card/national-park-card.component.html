@@ -1,0 +1,32 @@
+@if (nationalPark) {
+	<mat-card>
+		<div class="card-header gradient-text">
+			<div class="card-title sm">
+				{{ nationalPark.name }}
+			</div>
+		</div>
+		<div class="card-content">
+			<div>
+				<span class="bold">Region:</span> {{ nationalPark.region }}
+			</div>
+			<div>
+				<span class="bold">Coordinates:</span> {{ nationalPark.latitude | number : '1.5-5' }}, {{ nationalPark.longitude | number : '1.5-5' }}
+			</div>
+			@if (nationalPark.weather) {
+				<div>
+					<span class="bold">Current Temperature:</span> {{ nationalPark.weather.current_temperature | temperature }}
+				</div>
+			}
+		</div>
+		@if (!isPopup) {
+			<div class="card-actions">
+				<button mat-stroked-button class="card-button" (click)="onSeeOnMapClick()">
+					<div class="gradient-text">See On Map</div>
+				</button>
+				<button mat-stroked-button class="card-button" (click)="onViewWeatherClick()">
+					<div class="gradient-text">View Details</div>
+				</button>
+			</div>
+		}
+	</mat-card>
+}

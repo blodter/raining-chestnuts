@@ -1,0 +1,24 @@
+@use '../constants' as constants;
+
+.mdc-snackbar {
+  &.success {
+    --mdc-snackbar-container-color: #499E47;
+  }
+
+  &.warning {
+    --mdc-snackbar-container-color: #DCA62C;
+  }
+
+  &.danger {
+    --mdc-snackbar-container-color: #F53D3D;
+  }
+
+  &.info {
+    --mdc-snackbar-container-color: #3498DB;
+  }
+
+  .mat-mdc-snack-bar-container {
+    --mat-mdc-snack-bar-button-color: constants.$white;
+    --mdc-snackbar-supporting-text-color: constants.$white;
+  }
+}

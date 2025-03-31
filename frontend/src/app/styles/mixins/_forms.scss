@@ -1,0 +1,25 @@
+@use '../constants' as constants;
+
+.mat-mdc-form-field.rounded > .mat-mdc-text-field-wrapper {
+  border-radius: 32px;
+
+  .mat-mdc-form-field-infix {
+    padding-left: 8px;
+    padding-right: 40px;
+  }
+}
+
+.mat-mdc-form-field-infix {
+  fa-icon {
+    color: constants.$light-black;
+
+    &.loading {
+      animation: rotate 2s linear infinite;
+    }
+
+    &.suffix {
+      position: absolute;
+      right: 8px;
+    }
+  }
+}

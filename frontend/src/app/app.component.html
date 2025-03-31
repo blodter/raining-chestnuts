@@ -1,0 +1,30 @@
+<mat-toolbar class="navbar">
+	<button (click)="navigate('/')" class="title" color="primary" mat-button>
+		<div class="gradient-text">Raining Chestnuts</div>
+	</button>
+	<div class="nav-buttons">
+		<button (click)="navigate('/')" color="primary" mat-button>
+			<div class="gradient-text">Weather</div>
+		</button>
+		<button (click)="navigate('/map')" color="primary" mat-button>
+			<div class="gradient-text">Map</div>
+		</button>
+	</div>
+</mat-toolbar>
+@if (loading) {
+	<mat-progress-bar class="loading-bar" mode="indeterminate"></mat-progress-bar>
+}
+<mat-drawer-container autosize class="app-container">
+	<div class="content-container">
+		<div class="main-content">
+			<router-outlet></router-outlet>
+		</div>
+		<footer>
+			<div class="footer-content">
+				<div class="footer-text">
+					© 2025 Raining Chestnuts
+				</div>
+			</div>
+		</footer>
+	</div>
+</mat-drawer-container>

@@ -1,0 +1,15 @@
+<mat-drawer-container>
+	<mat-drawer-content>
+		<div #map class="map" id="map"></div>
+	</mat-drawer-content>
+	<mat-drawer class="map-sidenav" mode="side" opened="true" position="end">
+		<div class="national-parks-container">
+			@for (nationalPark of nationalParks; track nationalPark) {
+				<app-national-park-card [nationalPark]="nationalPark"
+				                        (onSeeOnMap)="seeOnMap($event)"
+				                        (onViewWeather)="viewWeather($event)">
+				</app-national-park-card>
+			}
+		</div>
+	</mat-drawer>
+</mat-drawer-container>

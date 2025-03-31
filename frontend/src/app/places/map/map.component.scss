@@ -1,0 +1,28 @@
+@use '../../styles/constants' as constants;
+@use '../../styles/theme' as theme;
+@use '@angular/material' as mat;
+
+.map {
+  height: calc(100vh - #{constants.$navbar-height} - #{constants.$footer-height});
+}
+
+::ng-deep .mapboxgl-popup-content {
+  background: transparent !important;
+  border-radius: unset !important;
+  box-shadow: none !important;
+  padding: unset !important;
+}
+
+.map-sidenav {
+  width: 416px;
+
+  .national-parks-container {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+
+    app-national-park-card {
+      margin-bottom: 16px;
+    }
+  }
+}

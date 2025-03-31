@@ -1,0 +1,46 @@
+@use './theme' as theme;
+@use '@angular/material' as mat;
+
+// Main element heights
+$navbar-height: 64px;
+$footer-height: 64px;
+
+// Flex gap sizes
+$flex-gap-xs: 8px;
+$flex-gap-sm: 12px;
+$flex-gap-md: 16px;
+$flex-gap-lg: 24px;
+$flex-gap-xl: 32px;
+
+// Media breakpoints
+$breakpoint-mobile-portrait: 320px;
+$breakpoint-mobile-landscape: 480px;
+$breakpoint-tablet-portrait: 600px;
+$breakpoint-tablet-landscape: 801px;
+$breakpoint-desktop: 1025px;
+$breakpoint-desktop-hi-res: 1281px;
+
+
+// Colors
+$primary: mat.get-theme-color(theme.$dark-theme, 'primary');
+$tertiary: mat.get-theme-color(theme.$dark-theme, 'tertiary');
+$warn: #ff6068;
+
+// Grayscale
+$white: #FFFFFF;
+$light-white: #F5F5F5;
+$med-white: #F0F0F0;
+$dark-white: #E5E5E5;
+$light-smoke: #D9D9D9;
+$med-smoke: #D0D0D0;
+$dark-smoke: #B3B3B3;
+$light-gray: #A6A6A6;
+$med-gray: #8C8C8C;
+$gray: #666666;
+$light-black: #333333;
+$med-black: #1A1A1A;
+$black: #000000;
+
+
+// Fonts/typography
+$font-family: 'Mulish', sans-serif;

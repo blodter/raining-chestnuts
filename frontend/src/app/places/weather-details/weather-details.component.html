@@ -1,0 +1,73 @@
+@if (nationalPark) {
+	<div [gdGap]="GAPS.md" class="content" gdRows="1fr">
+		<div [gdGap]="GAPS.md" gdColumns="1fr">
+			<mat-card class="location-card">
+				<div class="card-header no-margin">
+					<div class="card-title no-border">
+						<div class="gradient-text">
+							{{ nationalPark.name }}
+						</div>
+						<div class="card-subtitle" matTooltip="Coordinates of national park." matTooltipPosition="right">
+							<fa-icon [icon]="['fas', 'location-arrow']"></fa-icon>
+							{{ nationalPark.latitude | number : '1.5-5' }}, {{ nationalPark.longitude | number : '1.5-5' }}
+						</div>
+					</div>
+					<app-back-button></app-back-button>
+				</div>
+				<!--				<div class="card-content">-->
+				<!--					<div>-->
+				<!--						<span class="bold">Region:</span> {{ nationalPark.region }}-->
+				<!--					</div>-->
+				<!--					@if (nationalPark.weather) {-->
+				<!--						<div>-->
+				<!--							<span class="bold">Current Temperature:</span> {{ nationalPark.weather?.current_temperature | temperature }}-->
+				<!--						</div>-->
+				<!--					}-->
+				<!--				</div>-->
+			</mat-card>
+		</div>
+		@if (nationalPark.weather) {
+			<div [gdGap]="GAPS.md" gdColumns="1fr">
+				<mat-card class="location-card">
+					<div class="card-header">
+						<div class="card-title">
+							<div class="gradient-text">
+								Weather Data
+							</div>
+							<div class="card-subtitle" matTooltip="Time of the last weather update." matTooltipPosition="right">
+								<fa-icon [icon]="['far', 'clock']"></fa-icon>
+								{{ nationalPark.weather.updated_at | date : 'MMM d, y - h:mm a (O)' }}
+							</div>
+						</div>
+					</div>
+					<div class="card-content">
+						<div>
+							<span class="bold">Current Temperature:</span> {{ nationalPark.weather.current_temperature | temperature }}
+						</div>
+						<div>
+							<span class="bold">Mean Temperature Today:</span> {{ nationalPark.weather.current_temperature | temperature }}
+							<span class="rate-of-change" [ngClass]="nationalPark.weather.change_today_to_10 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change in the last 10 years." matTooltipPosition="right">
+								({{ nationalPark.weather.change_today_to_10 >= 0 ? '+' : '' }}{{ nationalPark.weather.change_today_to_10 | temperature }})
+							</span>
+						</div>
+						<div>
+							<span class="bold">Mean Temperature 10 Years Ago:</span> {{ nationalPark.weather.historical_mean_temp_10 | temperature }}
+							<span class="rate-of-change" [ngClass]="nationalPark.weather.change_10_to_20 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 10 and 20 years ago." matTooltipPosition="right">
+								({{ nationalPark.weather.change_10_to_20 >= 0 ? '+' : '' }}{{ nationalPark.weather.change_10_to_20 | temperature }})
+							</span>
+						</div>
+						<div>
+							<span class="bold">Mean Temperature 20 Years Ago:</span> {{ nationalPark.weather.historical_mean_temp_20 | temperature }}
+							<span class="rate-of-change" [ngClass]="nationalPark.weather.change_20_to_30 >= 0 ? 'warn' : 'info'" matTooltip="Rate of change between 20 and 30 years ago." matTooltipPosition="right">
+								({{ nationalPark.weather.change_20_to_30 >= 0 ? '+' : '' }}{{ nationalPark.weather.change_20_to_30 | temperature }})
+							</span>
+						</div>
+						<div>
+							<span class="bold">Mean Temperature 30 Years Ago:</span> {{ nationalPark.weather.historical_mean_temp_30 | temperature }}
+						</div>
+					</div>
+				</mat-card>
+			</div>
+		}
+	</div>
+}

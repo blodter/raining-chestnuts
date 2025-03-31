@@ -1,0 +1,31 @@
+// Main element heights
+$navbar-height: 64px;
+$footer-height: 64px;
+
+// Flex gap sizes
+$flex-gap-xs: 8px;
+$flex-gap-sm: 12px;
+$flex-gap-md: 16px;
+$flex-gap-lg: 24px;
+$flex-gap-xl: 32px;
+
+// Media breakpoints
+$breakpoint-mobile-portrait: 320px;
+$breakpoint-mobile-landscape: 480px;
+$breakpoint-tablet-portrait: 600px;
+$breakpoint-tablet-landscape: 801px;
+$breakpoint-desktop: 1025px;
+$breakpoint-desktop-hi-res: 1281px;
+
+.content {
+  padding: 32px;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+w-100 {
+  width: 100%;
+}
