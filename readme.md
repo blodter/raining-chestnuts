@@ -22,4 +22,21 @@ To initialize the application, be sure no other applications are running on port
 then navigate to the root director of the project and simply run `docker-compose up`.
 Once the project finishes building, the application will be available on your browser at `http://localhost`.
 
-I do advise waiting about 30 seconds to a minute for celery to finish syncing the initial weather data (indicated by the logline from the celery container: `celery-1 | Weather data updated successfully!`).
+I do advise waiting about 30 seconds for celery to finish syncing the initial weather data (indicated by the logline from the celery container: `celery-1 | Weather data updated successfully!`).
+
+A .env file is required to run the application, and must be placed in the project's root directory. You may generate a Django secret key and replace the x's with the response from this command: `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'`
+
+.env Example:
+```.env
+DJANGO_SECRET_KEY="django-insecure-xxxxxxxxxxxxx"
+POSTGRES_DB=raining_chestnuts
+POSTGRES_PASSWORD="xxxxxxxxxxxxx"
+POSTGRES_PORT=5432
+POSTGRES_SERVER=db
+POSTGRES_USER=root
+```
+
+## IDE Support
+If you would like to get IDE support of libraries used within this project:
+- For the backend: you may initialize a python virtual environment and install the requirements.txt file.
+- For the frontend: you may initialize a node environment, navigate to the frontend directory in your terminal, and run `npm install`
